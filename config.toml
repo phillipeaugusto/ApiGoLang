@@ -1,0 +1,11 @@
+[api]
+port = "9001"
+
+[db]
+host = ""
+user = ""
+password = ""
+database =""
+port = ""
+
+
