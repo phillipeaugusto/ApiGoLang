@@ -1,0 +1,124 @@
+definitions:
+  input.ClienteInputDto:
+    properties:
+      celular:
+        type: string
+      cpf:
+        type: string
+      email:
+        type: string
+      nome:
+        type: string
+      senha:
+        type: string
+    type: object
+  input.LoginInputDto:
+    properties:
+      email:
+        type: string
+      senha:
+        type: string
+    type: object
+  output.ClienteOutPutDto:
+    properties:
+      celular:
+        type: string
+      cpf:
+        type: string
+      dataAlteracao:
+        type: string
+      dataCriacao:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      nome:
+        type: string
+      status:
+        type: string
+    type: object
+  output.DadosLoginOutPutDto:
+    properties:
+      clienteId:
+        type: string
+      token:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /cliente:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/output.ClienteOutPutDto'
+            type: array
+      tags:
+      - Cliente
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/input.ClienteInputDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/output.ClienteOutPutDto'
+      tags:
+      - Cliente
+  /cliente/{id}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/output.ClienteOutPutDto'
+      tags:
+      - Cliente
+  /login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/input.LoginInputDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/output.DadosLoginOutPutDto'
+      tags:
+      - Login
+swagger: "2.0"
